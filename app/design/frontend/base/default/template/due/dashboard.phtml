@@ -1,0 +1,40 @@
+<?php /** @var $this Due_Payments_Block_Dashboard */?>
+<div class="page-title">
+    <h1><?php echo $this->__('Saved Cards') ?></h1>
+</div>
+
+<?php echo $this->getMessagesBlock()->toHtml() ?>
+
+<div class="due-saved-cards">
+    <?php $cards = $this->getDueCards(); ?>
+    <?php if (count($cards) > 0): ?>
+        <?php echo $this->getChildHtml('pager'); ?>
+
+        <table id="saved-cards" class="data-table">
+            <thead>
+                <tr>
+                    <th><span class="nobr"><?php echo $this->__('Brand'); ?></span></th>
+                    <th><span class="nobr"><?php echo $this->__('Number'); ?></span></th>
+                    <th><span class="nobr"><?php echo $this->__('Expiration'); ?></span></th>
+                    <th><span class="nobr"><?php echo $this->__('Created At'); ?></span></th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach($cards as $item): ?>
+                <tr>
+                    <td><span class="nobr"><?php echo $this->getItemValue($item, 'type') ?></span></td>
+                    <td><span class="nobr"><?php echo $this->getItemValue($item, 'number') ?></span></td>
+                    <td><span class="nobr"><?php echo $this->getItemValue($item, 'expiration') ?></span></td>
+                    <td><span class="nobr"><?php echo $this->getItemValue($item, 'created_at') ?></span></td>
+                    <td><a href="<?php echo $this->getItemValue($item, 'delete_url') ?>"><?php echo $this->__('Delete') ?></a></td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+        <script type="text/javascript">decorateTable('saved-cards')</script>
+
+    <?php else: ?>
+        <p><?php echo $this->__('There are no saved cards yet.')?></p>
+    <?php endif; ?>
+</div>

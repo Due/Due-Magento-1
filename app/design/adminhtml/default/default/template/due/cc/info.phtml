@@ -1,0 +1,17 @@
+<?php
+/** @var $this Due_Payments_Block_Info_CC */
+?>
+
+<p><?php echo $this->escapeHtml($this->getMethod()->getTitle()) ?></p>
+<?php if ($_specificInfo = $this->getSpecificInformation()):?>
+    <table>
+        <?php foreach ($_specificInfo as $_label => $_value):?>
+            <tr>
+                <td><?php echo $this->escapeHtml($_label)?>:</td>
+                <td><?php echo nl2br(implode($this->getValueAsArray($_value, true), "\n"))?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php endif;?>
+
+<?php echo $this->getChildHtml()?>

@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Due_Payments>
+            <version>1.0.1</version>
+        </Due_Payments>
+    </modules>
+
+    <global>
+        <models>
+            <due>
+                <class>Due_Payments_Model</class>
+                <resourceModel>due_resource</resourceModel>
+            </due>
+            <due_resource>
+                <class>Due_Payments_Model_Resource</class>
+                <entities>
+                    <duecard>
+                        <table>duecard</table>
+                    </duecard>
+                </entities>
+            </due_resource>
+        </models>
+
+        <blocks>
+            <due>
+                <class>Due_Payments_Block</class>
+            </due>
+            <page>
+                <rewrite>
+                    <html_head>Due_Payments_Block_Html_Head</html_head>
+                </rewrite>
+            </page>
+        </blocks>
+
+        <helpers>
+            <due>
+                <class>Due_Payments_Helper</class>
+            </due>
+        </helpers>
+
+        <resources>
+            <due_setup>
+                <setup>
+                    <module>Due_Payments</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </due_setup>
+            <due_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </due_write>
+            <due_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </due_read>
+        </resources>
+    </global>
+
+    <default>
+        <payment>
+            <due_cc>
+                <active>0</active>
+                <model>due/method_CC</model>
+                <order_status>pending_payment</order_status>
+                <payment_action>authorize_capture</payment_action>
+                <title>Pay with Credit Card</title>
+                <allowspecific>0</allowspecific>
+                <cctypes>AE,VI,MC,DI</cctypes>
+                <sandbox_mode>1</sandbox_mode>
+                <store_cards>0</store_cards>
+                <useccv>1</useccv>
+                <rail_type>us</rail_type>
+            </due_cc>
+        </payment>
+    </default>
+
+    <frontend>
+        <routers>
+            <due_cc>
+                <use>standard</use>
+                <args>
+                    <module>Due_Payments</module>
+                    <frontName>due</frontName>
+                </args>
+            </due_cc>
+        </routers>
+
+        <!-- Updates layout... -->
+        <layout>
+            <updates>
+                <due_cc>
+                    <file>due/cc.xml</file>
+                </due_cc>
+            </updates>
+        </layout>
+    </frontend>
+</config>

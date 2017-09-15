@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <!--CSS and JS Files-->
+        <reference name="head">
+            <action method="addItem"><type>external_js</type><name>https://static.due.com/v1.1/due.min.js</name></action>
+            <action method="addItem"><type>js</type><name>due/due-checkout.js?v=1.1</name></action>
+        </reference>
+    </default>
+
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink">
+                <name>due_cards</name>
+                <path>due/dashboard</path>
+                <label>Saved Cards</label>
+            </action>
+        </reference>
+    </customer_account>
+
+    <due_cc_dashboard_index>
+        <update handle="customer_account"/>
+        <reference name="content">
+            <block type="due/dashboard" name="due_dashboard" template="due/dashboard.phtml"/>
+            <block type="customer/account_dashboard" name="customer.account.link.back" template="customer/account/link/back.phtml" />
+        </reference>
+    </due_cc_dashboard_index>
+</layout>

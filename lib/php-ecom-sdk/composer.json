@@ -1,0 +1,27 @@
+{
+    "name": "due/php-ecom-sdk",
+    "description": "Due PHP Library",
+    "keywords": ["due", "payment processing", "marketplace", "e-commerce", "invoice", "api"],
+    "license": "MIT",
+    "authors": [
+        {
+          "name": "Due and contributors",
+          "homepage": "https://github.com/Due/php-ecom-sdk/contributors"
+        }
+    ],
+    "type": "project",
+    "require": {
+      "php": ">=5.3.3",
+      "ext-curl": "*",
+      "ext-json": "*",
+      "ext-mbstring": "*"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "~4.0"
+    },
+	"autoload": {
+        "psr-4": {
+            "Due\\": "lib/"
+        }
+    }
+}
